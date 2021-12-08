@@ -1,6 +1,6 @@
-# Monster Slayer Game
+# Monster Slayer Game 
 >Simple game Made By Using Vue
-
+>Access it [here](https://gourav-kr.github.io/Monster-Slayer-/)
 ## Controls
 
 - Attack: Attack on monster
