@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body onload="">
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style='MonBarStyle'></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style='PlayerBarStyle'></div>
+        </div>
+      </section>
+      <section class="container" v-if='winner'>
+        <h2>Game Over!</h2>
+        <h3 v-if="winner ===  'Monster'">You Lost!</h3>
+        <h3 v-else-if="winner === 'You'">You Won!</h3>
+        <h3 v-else>It's a Draw</h3>
+        <button @click="startGame">Restart</button>
+        <h3></h3>
+      </section>
+      <section id="controls" v-else>
+        <button @click="attackMon">ATTACK</button>
+        <button :disabled='useSpcl' @click="SpecialattackMon">SPECIAL ATTACK:{{spclatkcount}}</button>
+        <button @click='HealPlayer'>HEAL</button>
+        <button @click='surrender'>SURRENDER</button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <ul> 
+          <li v-for="msg in log">
+            <span 
+              :class="{'log--player': msg.actBy=='player','log--monster':msg.actBy=='monster'}">{{msg.actBy === 'player'? msg.name :'Monster'}}</span> 
+            <span v-if='msg.act==="heal"'> Heals for <span class="log--heal">{{msg.actVal}}</span> health points
+            </span>
+            <span v-else> attacks and deals <span class='log--damage'>{{msg.actVal}}</span> damage</span>
+            {{actVal}}
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
