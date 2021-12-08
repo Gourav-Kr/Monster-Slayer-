@@ -8,7 +8,7 @@ function takename() {
     na = prompt("Enter Your Name");
     // console.log(na)
 }
-window.onload = takename();
+document.onload = takename();
 // console.log(na)
 na = na ? na : 'Player';
 const app = Vue.createApp({
